@@ -1,4 +1,6 @@
-class Player:
+from Character import Character
 
-    def __init__(self):
-        pass
+class Player(Character):
+
+    def __init__(self, position):
+        super(Player, self).__init__(position)

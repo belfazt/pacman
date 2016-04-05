@@ -5,7 +5,6 @@ class Character(object):
     def __init__(self, position):
         self.x = position[0]
         self.y = position[1]
-        self.tag = tag
 
     def get_position(self):
         return (self.x, self.y)

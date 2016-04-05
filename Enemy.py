@@ -1,4 +1,6 @@
-class Enemy:
+from Character import Character
 
-    def __init__(self):
-        pass
+class Enemy(Character):
+
+    def __init__(self, position):
+        super(Enemy, self).__init__(position)
