@@ -41,9 +41,14 @@ class PacMan:
                 print value, 
             print ''
 
+    def mutate(self):
+        for enemy in self.enemies:
+            enemy.behave(self.player, self.board)
+
     def play(self):
         self.print_board()
         while True:
+            self.mutate()
             key = pressed_key()
             if key in ['W', 'w']:
                 self.player.move('up', self.board)
@@ -56,6 +61,7 @@ class PacMan:
             elif key in ['Q', 'q']:
                 sys.exit(0)
             else:
+                self.mutate()
                 continue
             self.update_board()
             self.print_board()
