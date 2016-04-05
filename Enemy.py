@@ -42,5 +42,4 @@ class Enemy(Character):
             self.state = 'attack'
         else:
             self.state = 'search'
-        print self.state
         self.actions[self.state](board)

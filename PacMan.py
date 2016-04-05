@@ -1,15 +1,15 @@
-from constants import WORLD
+from constants import WORLD, COLOR
 from Enemy import Enemy
 from Player import Player
-from input import pressed_key
+from input import pressed_key, has_colours, printout
 import random, platform, os, sys
 
 class PacMan:
     board = []
     player = None
     enemies = []
-    world_info = {}
     enemies_spawn_area = []
+    has_colours = False
 
     def __init__(self, board_path='board.txt', enemies_count=4):
         self.player = Player([16, 10])
@@ -19,6 +19,8 @@ class PacMan:
         for i in xrange(0, enemies_count):
             self.enemies.append(Enemy(random.choice(self.enemies_spawn_area)))
         self.update_board()
+        self.has_colours = has_colours(sys.stdout)
+
 
 
     def read_board(self, path):
@@ -38,7 +40,12 @@ class PacMan:
         self.clear_screen()
         for row in self.board:
             for value in row:
-                print value, 
+                if value == WORLD['wall']:
+                    printout(value, self.has_colours, COLOR.index('BLUE'))
+                elif value == WORLD['player']:
+                    printout(value, self.has_colours, COLOR.index('BLUE'))
+                else:
+                    printout(value, self.has_colours)
             print ''
 
     def mutate(self):
